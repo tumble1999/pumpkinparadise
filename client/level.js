@@ -1,4 +1,5 @@
 var mylevel = localStorage.getItem("level");
+var sec = 5;
 
 window.setInterval(function () {
 			mylevel = (mylevel + 1);
@@ -12,4 +13,4 @@ window.setInterval(function () {
 window.setInterval(function () {
 			document.getElementById("pumpkinlevel").innerHTML = localStorage.getItem("level");
        }
-   }, 1);
+   }, sec);
