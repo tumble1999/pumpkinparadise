@@ -5,6 +5,7 @@ var BoxCritters = (function() {
 	 * "update" regulary calling event
 	 */
 	var eventHandler = new EventHandler();
+
 	function Artwork(t) {
 		this.background,
 			this.foreground,
