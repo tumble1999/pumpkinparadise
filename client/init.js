@@ -1,54 +1,54 @@
-PlayFab.settings.titleId = "5417";
+        PlayFab.settings.titleId = "5417";
 
-var socket = io("https://pumpkin-server.herokuapp.com/", {
-	autoConnect: false,
-	transports: ["websocket"]
-});
+        var socket = io("https://pumpkin-server.herokuapp.com/", {
+            autoConnect: false,
+            transports: ["websocket"]
+        });
 
-hamster_data.images = ["./media/characters/pumpkin.png"];
+        hamster_data.images = ["./media/characters/pumpkin.png"];
 
-var settings = {
-	character: hamster_data,
-	roomPath: "./media/rooms/"
-};
+        var settings = {
+            character: hamster_data,
+            roomPath: "./media/rooms/"
+        };
 
-var world = new World(socket, settings, "stage");
+        var world = new World(socket, settings, "stage");
 
-function loginSession(ticket) {
-	world.login(ticket);
-}
+        function loginSession(ticket) {
+            world.login(ticket);
+        }
 
-socket.on("login", function(data) {
-	$(".login").hide();
-	$(".client").show();
+        socket.on("login", function(data) {
+            $(".login").hide();
+            $(".client").show();
 
-	$(".client .chat-btn").click(sendMessage);
+            $(".client .chat-btn").click(sendMessage);
 
-	$(document).unbind("keypress");
-	$(document).keypress(handleKeypress);
+            $(document).unbind("keypress");
+            $(document).keypress(handleKeypress);
 
-	window.onresize = function() {
-		var body = $("#stage").parent();
-		$("#stage")
-			.width(body.width())
-			.height(body.width() * 0.54);
-	};
-	window.onresize();
-});
+            window.onresize = function() {
+                var body = $("#stage").parent();
+                $("#stage")
+                    .width(body.width())
+                    .height(body.width() * 0.54);
+            };
+            window.onresize();
+        });
 
-function handleKeypress(e) {
-	if (e.which == 13) {
-		sendMessage();
-	}
-}
+        function handleKeypress(e) {
+            if (e.which == 13) {
+                sendMessage();
+            }
+        }
 
-function sendMessage() {
-	var message = $("#chat-message").val();
-	if (message.length > 0) {
-		world.sendMessage(message);
-		$("#chat-message").val("");
-		$("#chat-message").focus();
-	} else {
-		$("#chat-message").focus();
-	}
-}
+        function sendMessage() {
+            var message = $("#chat-message").val();
+            if (message.length > 0) {
+                world.sendMessage(message);
+                $("#chat-message").val("");
+                $("#chat-message").focus();
+            } else {
+                $("#chat-message").focus();
+            }
+        }
